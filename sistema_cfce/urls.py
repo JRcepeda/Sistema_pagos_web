@@ -1,0 +1,30 @@
+"""
+URL configuration for sistema_cfce project.
+
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+#define cuando se va a ejecutar
+from django.contrib import admin
+from django.urls import path,include
+from login import views
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # pagina principal por eso ' 'el name se usa para no tener que cambiar las rutas en el html
+
+    path('',views.logi,name='logi'),
+  #path('logi/',views.logi, name='logi'),
+    #path('signup/',views.signup, name='signup'),#cuando se envia la peticion desde signup contesta con views.signup
+    path('tasks/',include('tasks.urls')),#asi la aplicacion pricipal lee las url de task
+    path('logout/',views.signout,name='logout')   
+]

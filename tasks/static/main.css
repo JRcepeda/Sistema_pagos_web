@@ -1,0 +1,29 @@
+body{
+    background-color: #91B33B;
+   }
+.texto-gris{
+    color:gray;
+}
+h2{
+    color: black;
+}
+h1 {
+    color: white; /* Cambia el color del texto a blanco o el que prefieras */
+    text-align: center; /* Centra el texto horizontalmente */
+}
+.shadow{
+    box-shadow: -9px 0px 77px 0px rgba(0,0,0,0.75);
+}
+button{background-color: #e7e7e7;
+    color: black;
+    width: 70%;
+    border: gray;
+    padding: 15px 30px;
+    text-align: center;
+    border-radius: 10%;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;}
+#input{
+    width: 205px;
+}
