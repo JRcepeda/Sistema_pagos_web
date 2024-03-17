@@ -12,7 +12,6 @@ def fuente(request):
 
 #peticion de pago
 def datos_sql(request):
-    print(request.POST['documento'])
     if request.method=='GET':
         return render(request,'consultas.html')
     else:
@@ -20,7 +19,7 @@ def datos_sql(request):
             notice,saldo=consult_sql(request.POST['documento'])
             locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
             saldo=[locale.currency(saldo[0][0],grouping=True)]
-            return render(request,'consultas.html',{'notice':notice,'saldo':saldo,'doc':request.POST['documento'][:]})
+            return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
         except:
             return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0]})
 
