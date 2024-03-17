@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -80,13 +80,10 @@ WSGI_APPLICATION = 'sistema_cfce.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'cfce',
-        "USER": 'JR_USER',
-        "PASSWORD": 'SiPNB05ejgOt',
-        "HOST": 'ep-flat-moon-a5qmqov3-pooler.us-east-2.aws.neon.tech',
-        "PORT": 5432
+    'default': {dj_database_url.config(
+        default="postgresql://JR_USER:SiPNB05ejgOt@ep-flat-moon-a5qmqov3-pooler.us-east-2.aws.neon.tech/cfce",
+        conn_max_age=600
+    )
     }
 }
 
