@@ -32,9 +32,7 @@ def datos_sql(request):
 #peticion de saldo
 
 def datos_sql2(request):
-    if request.method=='GET':
-        return render(request,'consultas.html')
-    else:
+    if request.method=='POST':
 
         try:
          #   print(request.POST)#request.POST['documento']
@@ -47,15 +45,18 @@ def datos_sql2(request):
             #return redirect('/tasks/')
             #return render(request,'consultas.html',{'estado':resultado})
             return render(request,'consultas.html',{'estado':['Digite un número de documento']})
+    else:
+        return render(request,'consultas.html')
+
 def datos_trans(request):
     if request.method=='GET':
         return render(request,'transacciones.html')
     else:
-        locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-        resultado=consult_sql3(request.POST['fecha1'],request.POST['fecha2'])[0][0]
-        resultado=locale.currency(resultado,grouping=True)
+
         try:
-            
+            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
+            resultado=consult_sql3(request.POST['fecha1'],request.POST['fecha2'])[0][0]
+            resultado=locale.currency(resultado,grouping=True)            
             return render(request,'transacciones.html',{'resultado':resultado})        
         except:
 
@@ -66,14 +67,12 @@ def datos_trans2(request):
     if request.method=='GET':
         return render(request,'transacciones.html')
     else:
-        locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-
-            
-        resultado=consult_sql4(request.POST['documento'],request.POST['fecha'])[0]
-
-        resultado=f"El documento {request.POST['documento']} tiene una transacción rechazada con la referencia {resultado[1]} con el valor de {locale.currency(resultado[0],grouping=True)} debido a que, presenta la inconsistencia: {resultado[2]}"
 
         try:
+            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')           
+            resultado=consult_sql4(request.POST['documento'],request.POST['fecha'])[0]
+            resultado=f"El documento {request.POST['documento']} tiene una transacción rechazada con la referencia {resultado[1]} con el valor de {locale.currency(resultado[0],grouping=True)} debido a que, presenta la inconsistencia: {resultado[2]}"
+
             return render(request,'transacciones.html',{'Res':resultado})
         except:
             return render(request,'transacciones.html',{'Res':resultado})
