@@ -20,11 +20,9 @@ def datos_sql(request):
             notice,saldo=consult_sql(request.POST['documento'])
             locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
             saldo=[locale.currency(saldo[0][0],grouping=True)]
-            print('aqui')
-            print(notice)
             return render(request,'consultas.html',{'notice':notice,'saldo':saldo,'doc':request.POST['documento'][:]})
         except:
-            return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0],'doc':request.POST['documento'][:]})
+            return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0]})
 
 
 #peticion de saldo
@@ -34,14 +32,11 @@ def datos_sql2(request):
         return render(request,'consultas.html')
     else:
         try:
-            print(request.POST)#request.POST['documento']
+         #   print(request.POST)#request.POST['documento']
             locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
             resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
-            
-            
-            print(resultado)
             #return redirect('/tasks/')
-            return render(request,'consultas.html',{'documento':request.POST['documento'][:],'estado':resultado})
+            return render(request,'consultas.html',{'estado':resultado})
         except:
             return render(request,'consultas.html',{'estado':['Digite un número de documento']})
 def datos_trans(request):
@@ -49,7 +44,6 @@ def datos_trans(request):
         return render(request,'transacciones.html')
     else:
         locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-        print(request.POST['fecha1'],request.POST['fecha2'])
         resultado=consult_sql3(request.POST['fecha1'],request.POST['fecha2'])[0][0]
         try:
             resultado=locale.currency(resultado,grouping=True)
@@ -62,10 +56,10 @@ def datos_trans2(request):
     else:
         try:
             locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-            print(request.POST['documento'],request.POST['fecha'])
+
             
             resultado=consult_sql4(request.POST['documento'],request.POST['fecha'])[0]
-            print(resultado)
+
             resultado=f"El documento {request.POST['documento']} tiene una transacción rechazada con la referencia {resultado[1]} con el valor de {locale.currency(resultado[0],grouping=True)} debido a que, presenta la inconsistencia: {resultado[2]}"
             return render(request,'transacciones.html',{'Res':resultado})
         except:
