@@ -12,9 +12,7 @@ def fuente(request):
 
 #peticion de pago
 def datos_sql(request):
-    if request.method=='GET':
-        return render(request,'consultas.html')
-    else:
+    if request.method=='POST':
 
         try:
             notice,saldo=consult_sql(request.POST['documento'])
@@ -27,6 +25,9 @@ def datos_sql(request):
             #else:
             #    return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0]})
       #      return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
+    else:     
+        return render(request,'consultas.html')
+
 
 #peticion de saldo
 
@@ -34,17 +35,18 @@ def datos_sql2(request):
     if request.method=='GET':
         return render(request,'consultas.html')
     else:
-        locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-        resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
+
         try:
          #   print(request.POST)#request.POST['documento']
 
             #return redirect('/tasks/')
+            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
+            resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
             return render(request,'consultas.html',{'estado':resultado})
         except:
             #return redirect('/tasks/')
-            return render(request,'consultas.html',{'estado':resultado})
-            #return render(request,'consultas.html',{'estado':['Digite un número de documento']})
+            #return render(request,'consultas.html',{'estado':resultado})
+            return render(request,'consultas.html',{'estado':['Digite un número de documento']})
 def datos_trans(request):
     if request.method=='GET':
         return render(request,'transacciones.html')
