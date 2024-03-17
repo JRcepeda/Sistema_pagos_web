@@ -80,11 +80,10 @@ WSGI_APPLICATION = 'sistema_cfce.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {dj_database_url.config(
+    'default': dj_database_url.config(
         default="postgresql://JR_USER:SiPNB05ejgOt@ep-flat-moon-a5qmqov3-pooler.us-east-2.aws.neon.tech/cfce",
-        conn_max_age=600
-    )
-    }
+        conn_max_age=600)
+    
 }
 
 
