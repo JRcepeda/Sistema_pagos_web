@@ -15,11 +15,11 @@ def datos_sql(request):
     if request.method=='GET':
         return render(request,'consultas.html')
     else:
-        notice,saldo=consult_sql(request.POST['documento'])
-        locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-        saldo=[locale.currency(saldo[0][0],grouping=True)]
-        try:
 
+        try:
+            notice,saldo=consult_sql(request.POST['documento'])
+            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
+            saldo=[locale.currency(saldo[0][0],grouping=True)]
             return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
         except:
             #if saldo[0][0]>=0:
