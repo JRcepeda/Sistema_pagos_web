@@ -15,14 +15,14 @@ def datos_sql(request):
     if request.method=='GET':
         return render(request,'consultas.html')
     else:
+        notice,saldo=consult_sql(request.POST['documento'])
+        locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
+        saldo=[locale.currency(saldo[0][0],grouping=True)]
         try:
-            notice,saldo=consult_sql(request.POST['documento'])
-            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-            saldo=[locale.currency(saldo[0][0],grouping=True)]
+
             return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
         except:
             #if saldo[0][0]>=0:
-            saldo=[locale.currency(saldo[0][0],grouping=True)]
             return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
             #else:
             #    return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0]})
@@ -34,14 +34,14 @@ def datos_sql2(request):
     if request.method=='GET':
         return render(request,'consultas.html')
     else:
+        locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
+        resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
         try:
          #   print(request.POST)#request.POST['documento']
-            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-            resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
+
             #return redirect('/tasks/')
             return render(request,'consultas.html',{'estado':resultado})
         except:
-            resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
             #return redirect('/tasks/')
             return render(request,'consultas.html',{'estado':resultado})
             #return render(request,'consultas.html',{'estado':['Digite un número de documento']})
@@ -51,11 +51,12 @@ def datos_trans(request):
     else:
         locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
         resultado=consult_sql3(request.POST['fecha1'],request.POST['fecha2'])[0][0]
+        resultado=locale.currency(resultado,grouping=True)
         try:
-            resultado=locale.currency(resultado,grouping=True)
+            
             return render(request,'transacciones.html',{'resultado':resultado})        
         except:
-            resultado=locale.currency(resultado,grouping=True)
+
             return render(request,'transacciones.html',{'resultado':resultado})        
 
             #return render(request,'transacciones.html',{'resultado':'Sin fondos'})
@@ -63,18 +64,16 @@ def datos_trans2(request):
     if request.method=='GET':
         return render(request,'transacciones.html')
     else:
-        try:
-            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
+        locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
 
             
-            resultado=consult_sql4(request.POST['documento'],request.POST['fecha'])[0]
+        resultado=consult_sql4(request.POST['documento'],request.POST['fecha'])[0]
 
-            resultado=f"El documento {request.POST['documento']} tiene una transacción rechazada con la referencia {resultado[1]} con el valor de {locale.currency(resultado[0],grouping=True)} debido a que, presenta la inconsistencia: {resultado[2]}"
+        resultado=f"El documento {request.POST['documento']} tiene una transacción rechazada con la referencia {resultado[1]} con el valor de {locale.currency(resultado[0],grouping=True)} debido a que, presenta la inconsistencia: {resultado[2]}"
+
+        try:
             return render(request,'transacciones.html',{'Res':resultado})
         except:
-            resultado=consult_sql4(request.POST['documento'],request.POST['fecha'])[0]
-
-            resultado=f"El documento {request.POST['documento']} tiene una transacción rechazada con la referencia {resultado[1]} con el valor de {locale.currency(resultado[0],grouping=True)} debido a que, presenta la inconsistencia: {resultado[2]}"
             return render(request,'transacciones.html',{'Res':resultado})
 
 #            return render(request,'transacciones.html')
