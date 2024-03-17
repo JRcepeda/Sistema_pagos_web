@@ -85,9 +85,15 @@ WSGI_APPLICATION = 'sistema_cfce.wsgi.application'
 
 # Replace the DATABASES section of your settings.py with this
 DATABASES = {
-  'default': dj_database_url.config()
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'cfce',
+    'USER': 'jr_user',
+    'PASSWORD': 'CZKX95MbiaDmJ9MVWRRQhKXyASpJOwGr',
+    'HOST':'dpg-cnrhh221hbls73dvp5hg-a',
+    'PORT': 5432}
 }
-
+#dj_database_url.config()
 '''{
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'cfce',
