@@ -81,19 +81,22 @@ WSGI_APPLICATION = 'sistema_cfce.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
-DATABASES = {
-    'default': 
-        #dj_database_url.config(
-        #default="postgresql://JR_USER:SiPNB05ejgOt@ep-flat-moon-a5qmqov3-pooler.us-east-2.aws.neon.tech/cfce",
-        #conn_max_age=600)
-        {'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cfce',
-        'USER': 'JR_USER',
-        'PASSWORD': 'SiPNB05ejgOt',
-        'HOST': 'ep-flat-moon-a5qmqov3.us-east-2.aws.neon.tech',
-        'PORT': '5432',   
-        'CONN_MAX_AGE':10000000}    }
+# Add these at the top of your settings.py
 
+# Replace the DATABASES section of your settings.py with this
+DATABASES = {
+  'default': {
+    'ENGINE': 'django.db.backends.postgresql',
+    'NAME': 'cfce',
+    'USER': 'JR_USER',
+    'PASSWORD': 'SiPNB05ejgOt',
+    'HOST':'ep-weathered-dust-a5zc2w5v.us-east-2.aws.neon.tech',
+    'PORT': 5432,
+    'OPTIONS': {
+      'sslmode': 'require',
+    },
+  }
+}
 
 
 # Password validation
