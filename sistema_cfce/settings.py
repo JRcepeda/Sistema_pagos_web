@@ -90,7 +90,8 @@ DATABASES = {
         'USER': 'JR_USER',
         'PASSWORD': 'SiPNB05ejgOt',
         'HOST': 'ep-flat-moon-a5qmqov3.us-east-2.aws.neon.tech',
-        'PORT': '5432',   }    }
+        'PORT': '5432',   
+        'CONN_MAX_AGE':10000000}    }
 
 
 
