@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =False#'RENDER' not in os.environ
+DEBUG =True#'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
@@ -81,11 +81,17 @@ WSGI_APPLICATION = 'sistema_cfce.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default="postgresql://JR_USER:SiPNB05ejgOt@ep-flat-moon-a5qmqov3-pooler.us-east-2.aws.neon.tech/cfce",
-        conn_max_age=600)
-    
-}
+    'default': 
+        #dj_database_url.config(
+        #default="postgresql://JR_USER:SiPNB05ejgOt@ep-flat-moon-a5qmqov3-pooler.us-east-2.aws.neon.tech/cfce",
+        #conn_max_age=600)
+        {'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cfce',
+        'USER': 'JR_USER',
+        'PASSWORD': 'SiPNB05ejgOt',
+        'HOST': 'ep-flat-moon-a5qmqov3.us-east-2.aws.neon.tech',
+        'PORT': '5432',   }    }
+
 
 
 # Password validation
