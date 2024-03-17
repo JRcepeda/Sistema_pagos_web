@@ -90,7 +90,7 @@ DATABASES = {
     'NAME': 'cfce',
     'USER': 'jr_user',
     'PASSWORD': 'CZKX95MbiaDmJ9MVWRRQhKXyASpJOwGr',
-    'HOST':'dpg-cnrhh221hbls73dvp5hg-a',
+    'HOST':'pg-cnrhh221hbls73dvp5hg-a.oregon-postgres.render.com',
     'PORT': 5432}
 }
 #dj_database_url.config()
