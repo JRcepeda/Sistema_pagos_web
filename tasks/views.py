@@ -43,8 +43,8 @@ def datos_sql2(request):
             return render(request,'consultas.html',{'estado':resultado})
         except:
             #return redirect('/tasks/')
-            #return render(request,'consultas.html',{'estado':resultado})
-            return render(request,'consultas.html',{'estado':['Digite un número de documento']})
+            return render(request,'consultas.html',{'estado':resultado})
+            #return render(request,'consultas.html',{'estado':['Digite un número de documento']})
     else:
         return render(request,'consultas.html')
 
