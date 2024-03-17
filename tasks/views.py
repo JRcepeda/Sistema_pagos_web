@@ -18,13 +18,15 @@ def datos_sql(request):
 #        try:       
         notice,saldo=consult_sql(request.POST['documento'])
         locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-        if saldo[0][0]>=0:
-            saldo=[locale.currency(saldo[0][0],grouping=True)]
-            return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
- #       except:
-        else:
+        
+        try:
+            if saldo[0][0]>=0:
+                saldo=[locale.currency(saldo[0][0],grouping=True)]
+                return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
+    #       except:
+        except:
             return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0]})
-      #      return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
+        #      return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
 
 #peticion de saldo
 
