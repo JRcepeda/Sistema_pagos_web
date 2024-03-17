@@ -22,6 +22,7 @@ def consult_sql2(documento):
         sql=f"SELECT SALDO FROM SALDO_ESTUDIANTE WHERE CEDULA='{documento}'"
         cursor.execute(sql)
         respuesta=cursor.fetchall()
+        cursor.connection.commit()
     return respuesta
 
 def consult_sql3(d1,d2):
