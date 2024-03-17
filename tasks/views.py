@@ -21,10 +21,10 @@ def datos_sql(request):
             saldo=[locale.currency(saldo[0][0],grouping=True)]
             return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
         except:
-            if saldo[0][0]>=0:
-                return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
-            else:
-                return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0]})
+            #if saldo[0][0]>=0:
+            return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
+            #else:
+            #    return render(request,'consultas.html',{'notice':['Digite un numero de documento'],'saldo':[0]})
       #      return render(request,'consultas.html',{'notice':notice,'saldo':saldo})
 
 #peticion de saldo
