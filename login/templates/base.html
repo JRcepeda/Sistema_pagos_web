@@ -19,20 +19,20 @@ con la auida de block content-->
         <div class='container py-5' style=" background-color: rgba(128, 128, 128, 0.5);">    
             <br>
             <h1><center><strong>Bienvenido a SPFCE</strong></center></h1>
-            <nav>
+      <!--   <nav>
                 <ul>
                     {% if user.is_authenticated %} <!--(usa la cookie) condicional para que muestre una pagina si esta autenticado-->
-                        <li>
+            <!--            <li>
                             <a href='/logout'>Logout</a>
                         </li>   
                         <li>
                             <a href='/tasks'>Ir al sistema de pagos</a>
                         </li> 
-                    {% endif %}
+                    {% endif %} -->
                     
                     
-                </ul>
-            </nav>
+           <!--        </ul>
+            </nav> -->
                 <div>
                 <center>{% block content %}
                 {% endblock %}</center>
