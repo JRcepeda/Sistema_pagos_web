@@ -37,12 +37,12 @@ def datos_sql2(request):
         try:
             #locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
             #resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
-            resultado=request.POST['documento'][0][0]#[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
+            resultado=request.POST['documento'][0]#[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
             return render(request,'consultas.html',{'estado':resultado})
         except:
             #return redirect('/tasks/')
-            return render(request,'consultas.html',{'estado':resultado})
-            #return render(request,'consultas.html',{'estado':['Digite un número de documento']})
+            #return render(request,'consultas.html',{'estado':resultado})
+            return render(request,'consultas.html',{'estado':['Digite un número de documento']})
     else:
         return render(request,'consultas.html')
 
@@ -52,9 +52,9 @@ def datos_trans(request):
     else:
 
         try:
-            locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
+            #locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
             resultado=consult_sql3(request.POST['fecha1'],request.POST['fecha2'])[0][0]
-            resultado=locale.currency(resultado,grouping=True)            
+            #resultado=locale.currency(resultado,grouping=True)            
             return render(request,'transacciones.html',{'resultado':resultado})        
         except:
 
