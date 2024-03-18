@@ -39,7 +39,7 @@ def datos_sql2(request):
 
             #return redirect('/tasks/')
             locale.setlocale(locale.LC_ALL,'es_CO.UTF-8')
-            resultado=[locale.currency(consult_sql2(request.POST['documento'])[0][0],grouping=True)]
+            resultado=[locale.currency(consult_sql2(request.POST['docto'])[0][0],grouping=True)]
             return render(request,'consultas.html',{'estado':resultado})
         except:
             #return redirect('/tasks/')
