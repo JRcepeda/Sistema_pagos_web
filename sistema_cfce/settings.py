@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'sistema_cfce.wsgi.application'
 # Add these at the top of your settings.py
 
 # Replace the DATABASES section of your settings.py with this
-DATABASES = {
+'''DATABASES = {
   'default': {
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'cfce',
@@ -92,9 +92,9 @@ DATABASES = {
     'PASSWORD': 'CZKX95MbiaDmJ9MVWRRQhKXyASpJOwGr',
     'HOST':'pg-cnrhh221hbls73dvp5hg-a.oregon-postgres.render.com',
     'PORT': 5432}
-}
+}'''
 #dj_database_url.config()
-'''{
+DATABASES = {'default':{
     'ENGINE': 'django.db.backends.postgresql',
     'NAME': 'cfce',
     'USER': 'JR_USER',
@@ -104,7 +104,7 @@ DATABASES = {
     'OPTIONS': {
       'sslmode': 'require',
     },
-  }'''
+  }}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
