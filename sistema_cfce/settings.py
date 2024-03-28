@@ -99,7 +99,7 @@ DATABASES = {'default':{
     'NAME': 'cfce',
     'USER': 'JR_USER',
     'PASSWORD': 'SiPNB05ejgOt',
-    'HOST':'ep-weathered-dust-a5zc2w5v.us-east-2.aws.neon.tech',
+    'HOST':'ep-flat-moon-a5qmqov3.us-east-2.aws.neon.tech',
     'PORT': 5432,
     'OPTIONS': {
       'sslmode': 'require',
